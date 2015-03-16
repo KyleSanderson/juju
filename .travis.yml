@@ -1,0 +1,16 @@
+cache: apt
+language: c
+install:
+# We're using Juju (Arch Linux). It's actually pretty nice.
+  - PATH=$PWD/bin:$PATH
+  - juju -f echo ':)'
+  - echo Server = 'https://mirrors.kernel.org/archlinux/$repo/os/$arch' | jujuroot -f tee -a /etc/pacman.d/mirrorlist
+  - yes | juju -f pacman -Syy
+  - yes | juju -f pacman -S arch-install-scripts
+  - sudo cp .juju/usr/bin/arch-chroot ./bin
+before_script:
+# Further actions will be done as root.
+  - alias juju="sudo juju --root"
+  - juju echo ':)'
+script:
+  - juju -b
