@@ -33,6 +33,7 @@ source "$(dirname ${BASH_ARGV[0]})/util.sh"
 if [ -z ${JUJU_TEMPDIR} ] || [ ! -d ${JUJU_TEMPDIR} ]
 then
     JUJU_TEMPDIR=$PWD/jujutmp
+	mkdir -p ${JUJU_TEMPDIR}
 fi
 JUJU_REPO=https://bitbucket.org/fsquillace/juju-repo/raw/master
 ORIGIN_WD=$(pwd)
