@@ -32,7 +32,7 @@ source "$(dirname ${BASH_ARGV[0]})/util.sh"
 [ -z ${JUJU_HOME} ] && JUJU_HOME=~/.juju
 if [ -z ${JUJU_TEMPDIR} ] || [ ! -d ${JUJU_TEMPDIR} ]
 then
-    JUJU_TEMPDIR=/tmp
+    JUJU_TEMPDIR=$PWD/jujutmp
 fi
 JUJU_REPO=https://bitbucket.org/fsquillace/juju-repo/raw/master
 ORIGIN_WD=$(pwd)
