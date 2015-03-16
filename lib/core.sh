@@ -29,14 +29,6 @@ source "$(dirname ${BASH_ARGV[0]})/util.sh"
 
 ################################# VARIABLES ##############################
 
-if [ "$JUJU_ENV" == "1" ]
-then
-    die "Error: Nested JuJu environments are not allowed"
-elif [ ! -z $JUJU_ENV ] && [ "$JUJU_ENV" != "0" ]
-then
-    die "The variable JUJU_ENV is not properly set"
-fi
-
 [ -z ${JUJU_HOME} ] && JUJU_HOME=~/.juju
 if [ -z ${JUJU_TEMPDIR} ] || [ ! -d ${JUJU_TEMPDIR} ]
 then
@@ -247,9 +239,6 @@ function _check_package(){
 
 function build_image_juju(){
 # The function must runs on ArchLinux with non-root privileges.
-    [ "$(${ID})" == "0" ] && \
-        die "You cannot build with root privileges."
-
     _check_package arch-install-scripts
     _check_package gcc
     _check_package package-query
